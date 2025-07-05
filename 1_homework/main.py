@@ -41,29 +41,6 @@ class WeatherApiCurrent:
     is_day: int
     humidity: int
 
-@dataclass
-class Day:
-    maxtemp_c: float
-    mintemp_c: float
-    avgtemp_c: float
-
-@dataclass
-class WeatherApiForecastDay:
-    date: str
-    date_epoch: int
-    day: Day
-
-@dataclass
-class WeatherApiForecast:
-    forecastday: List[WeatherApiForecastDay]
-
-@dataclass
-class WeatherApiResponse:
-    location: WeatherApiLocation
-    current: WeatherApiCurrent
-    forecast: WeatherApiForecast | None = None
-
-
 
 # Function Implementations
 def get_current_temperature_for_city(city_name: str):
@@ -124,16 +101,20 @@ def get_temperature_forecast_for_city(city_name: str, days: int):
             for key in WeatherApiLocation.__annotations__.keys()
         }
 
-        # filters out the keys that are not in the dataclass
-        current_data = {
-            key: data["current"][key]
-            for key in WeatherApiCurrent.__annotations__.keys()
-        }
-
         location = WeatherApiLocation(**location_data)
-        current = WeatherApiCurrent(**current_data)
 
-        return {'city': location.name, 'temperature_c': current.temp_c}
+        # Process forecastday list
+        forecast_list = []
+        for day_data in data["forecast"]["forecastday"]:
+            forecast_item = {
+                "date": day_data["date"],
+                "maxtemp_c": day_data["day"]["maxtemp_c"],
+                "mintemp_c": day_data["day"]["mintemp_c"],
+                "avgtemp_c": day_data["day"]["avgtemp_c"]
+            }
+            forecast_list.append(forecast_item)
+
+        return {'city': location.name, 'forecast': forecast_list}
     except requests.exceptions.HTTPError as e:
         print(f"Chyba: {e}")
         return None
@@ -170,7 +151,7 @@ tools = [
                         "description": "The city name, e.g. Praha",
                     },
                     "days": {
-                        "type": "string",
+                        "type": "integer",
                         "description": "Number of days for the forecast (1-14).",
                     },
                 },
@@ -284,19 +265,29 @@ class ReactAgent:
 
 def main():
     print(get_temperature_forecast_for_city('Kralupy nad Vltavou', 3))
-    '''
+
     # Create a ReAct agent
     agent = ReactAgent()
 
+    '''
     # Example 1: Simple query (single tool call)
     print("=== Example 1: Single Tool Call ===")
     messages1 = [
         {"role": "system", "content": "You are a helpful AI assistant."},
         {"role": "user", "content": "What is the current temperature in Kralupy nad Vltavou?"},
     ]
+    '''
+    
+    # Example 1: Simple query (single tool call)
+    print("=== Example 1: Single Tool Call ===")
+    messages1 = [
+        {"role": "system", "content": "You are a helpful AI assistant."},
+        {"role": "user", "content": "What is the temperature forecast in Kralupy nad Vltavou for next 3 days with daily breakdown?"},
+    ]
 
     result1 = agent.run(messages1.copy())
-    '''
+
+
 
 
 if __name__ == "__main__":
