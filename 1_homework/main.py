@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from openai import OpenAI
 import json
-import yfinance as yf
 from dotenv import load_dotenv
 from typing import List, Dict, Any
 import requests
@@ -108,9 +107,9 @@ def get_temperature_forecast_for_city(city_name: str, days: int):
         for day_data in data["forecast"]["forecastday"]:
             forecast_item = {
                 "date": day_data["date"],
-                "maxtemp_c": day_data["day"]["maxtemp_c"],
-                "mintemp_c": day_data["day"]["mintemp_c"],
-                "avgtemp_c": day_data["day"]["avgtemp_c"]
+                "maximum_temperature": day_data["day"]["maxtemp_c"],
+                "minimum_temperature": day_data["day"]["mintemp_c"],
+                "average_temperature": day_data["day"]["avgtemp_c"]
             }
             forecast_list.append(forecast_item)
 
@@ -264,30 +263,38 @@ class ReactAgent:
 
 
 def main():
-    print(get_temperature_forecast_for_city('Kralupy nad Vltavou', 3))
-
     # Create a ReAct agent
     agent = ReactAgent()
 
-    '''
     # Example 1: Simple query (single tool call)
     print("=== Example 1: Single Tool Call ===")
     messages1 = [
         {"role": "system", "content": "You are a helpful AI assistant."},
-        {"role": "user", "content": "What is the current temperature in Kralupy nad Vltavou?"},
-    ]
-    '''
-    
-    # Example 1: Simple query (single tool call)
-    print("=== Example 1: Single Tool Call ===")
-    messages1 = [
-        {"role": "system", "content": "You are a helpful AI assistant."},
-        {"role": "user", "content": "What is the temperature forecast in Kralupy nad Vltavou for next 3 days with daily breakdown?"},
+        {"role": "user", "content": "What is the current temperature in Praha?"},
     ]
 
     result1 = agent.run(messages1.copy())
+    print(f"\nResult: {result1}")
 
+    # Example 2: Complex query requiring multiple tool calls
+    print("\n\n=== Example 2: Multiple Tool Calls ===")
+    messages2 = [
+        {"role": "system", "content": "You are a helpful AI assistant."},
+        {"role": "user", "content": "What is the average temperature forecast in Brno and Praha for next 3 days with daily breakdown? Please provide a summary."},
+    ]
 
+    result2 = agent.run(messages2.copy())
+    print(f"\nResult: {result2}")
+
+    # Example 3: Sequential reasoning
+    print("\n\n=== Example 3: Sequential Reasoning ===")
+    messages3 = [
+        {"role": "system", "content": "You are a helpful AI assistant."},
+        {"role": "user", "content": "Compare the temperatures in Brno and Praha for next 3 days. Where will be the temperature over those 3 days better for living?"},
+    ]
+
+    result3 = agent.run(messages3.copy())
+    print(f"\nResult: {result3}")
 
 
 if __name__ == "__main__":
