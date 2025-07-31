@@ -1,0 +1,61 @@
+## first example ##
+
+Předmět: Poptávka služeb - Redesign firemních webových stránek
+Dobrý den,
+obracím se na Vás s žádostí o poskytnutí služeb v oblasti webového designu a vývoje. Po prostudování Vašich referencí a portfolia jsem přesvědčen, že byste byli ideálním partnerem pro náš projekt.
+Základní informace:
+
+Jméno: Jan
+Příjmení: Novák
+Email: jan.novak@techfirma.cz
+Telefon: +420 777 123 456
+Firma: TechFirma s.r.o.
+
+Popis požadavku:
+Potřebujeme kompletní redesign našich firemních webových stránek včetně responzivního designu a optimalizace pro SEO. Předpokládaný rozsah zahrnuje návrh UX/UI, grafické zpracování, programování a napojení na CMS systém. Termín realizace by byl ideálně do 3 měsíců.
+Další informace:
+
+Rozpočet: 150 000 - 250 000 Kč
+Priorita: vysoká
+Specifické požadavky: integrace s e-shopem, vícejazyčnost (CZ/EN)
+
+Byl bych rád, kdybyste mi mohl zaslat orientační cenovou nabídku a informace o dostupnosti. Jsem k dispozici pro osobní schůzku nebo telefonickou konzultaci podle Vaší preference.
+Děkuji za Váš čas a těším se na Vaši odpověď.
+S pozdravem,
+Jan Novák
+jan.novak@techfirma.cz
++420 777 123 456
+[[exit]]
+
+## second example ##
+
+Předmět: Poptávka služeb - Vývoj mobilní aplikace pro fitness
+Dobrý den,
+obracím se na Vás s žádostí o poskytnutí služeb v oblasti vývoje mobilních aplikací. Po prostudování Vašich referencí a portfolia jsem přesvědčena, že byste byli ideálním partnerem pro náš projekt.
+Základní informace:
+
+Jméno: Marie
+Příjmení: Svobodová
+Email: marie.svobodova@fitnessstudio.cz
+Telefon: +420 608 987 654
+Firma: FitnessStudio Praha s.r.o.
+
+Popis požadavku:
+Potřebujeme vývoj mobilní aplikace pro iOS a Android zaměřené na fitness a wellness. Předpokládaný rozsah zahrnuje design uživatelského rozhraní, programování aplikace, integrace s fitness trackery a platební brána. Termín realizace by byl ideálně do 6 měsíců.
+Další informace:
+
+Rozpočet: 300 000 - 500 000 Kč
+Priorita: střední
+Specifické požadavky: synchronizace s Apple Health/Google Fit, offline režim, push notifikace
+
+Byla bych ráda, kdybyste mi mohla zaslat orientační cenovou nabídku a informace o dostupnosti. Jsem k dispozici pro osobní schůzku nebo telefonickou konzultaci podle Vaší preference.
+Děkuji za Váš čas a těším se na Vaši odpověď.
+S pozdravem,
+Marie Svobodová
+marie.svobodova@fitnessstudio.cz
++420 608 987 654
+[[exit]]
+
+## third example ##
+Jaké objednávky má klient jan.novak@techfirma.cz?
+[[exit]]
